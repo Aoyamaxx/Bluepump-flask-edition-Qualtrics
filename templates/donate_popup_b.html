@@ -1,0 +1,12 @@
+<div id="donate-popup" class="popup">
+    <div class="popup-content">
+        <span class="close">&times;</span>
+        <h2 class="center-align" style="padding-bottom: 2vh;">Support Bluepump</h2>
+        <p class="center-align">Help us achieve our goal by making a donation today! Your support will go a long way in helping us change the world.</p>
+        <p class="center-align"><a href="{{ url_for('learn_more_b') }}" id="learn-more-link" onclick="trackUserAction(visitorId, 'learn_more')">Learn more about how we use your funds to change the world.</a></p>
+        <p class="center-align"><a href="{{ url_for('donate_b') }}"><button id="donate-button" class="donate-btn" onclick="trackUserAction(visitorId, 'donate')">Donate</button></a></p>
+        <div class="center-align">
+            <p class="not-now" onclick="trackUserAction(visitorId, 'not_now')">Not now</p>
+        </div>
+    </div>
+</div>

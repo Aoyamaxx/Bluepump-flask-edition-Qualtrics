@@ -1,0 +1,4 @@
+@app.route('/gallery_malawi')
+def gallery_malawi():
+    country_images = [{'filename': 'malawi/malawi1.jpg'}, {'filename': 'malawi/malawi2.jpg'}, {'filename': 'malawi/malawi3.jpg'}, {'filename': 'malawi/malawi4.jpg'}, {'filename': 'malawi/malawi5.jpg'}, {'filename': 'malawi/malawi6.jpg'}, {'filename': 'malawi/malawi7.jpg'}]
+    return render_template('gallery_malawi.html', country_images=country_images)

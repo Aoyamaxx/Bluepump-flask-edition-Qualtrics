@@ -1,0 +1,29 @@
+<header>
+  <nav class="navbar navbar-expand-md navbar-light">
+    <div class="navbar-container">
+      <div class="logo-button-container">
+        <a class="navbar-brand" href="{{ url_for('index_a') }}">
+          <img src="{{ url_for('static', filename='images/Jointhepipe_Foundation_Zwart.png') }}" alt="image" class="logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+      <div class="container-header">
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <div class="menu-items navbar-nav">
+            <div class="menu-items navbar-nav">
+              <a href="{{ url_for('index_a') }}" class="menu-item nav-link">Home</a>
+              <a href="{{ url_for('map_a') }}" class="menu-item nav-link">Map</a>
+              <a href="{{ url_for('gallery_a') }}" class="menu-item nav-link">Gallery</a>
+              <a href="{{ url_for('projects_a') }}" class="menu-item nav-link">Projects</a>
+              <a href="{{ url_for('about_a') }}" class="menu-item nav-link">About Us</a>
+              <div class="donate-wrapper">
+                <a id="donate-header" href="{{ url_for('donate_a') }}" class="menu-item nav-link donate">Donate</a>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>

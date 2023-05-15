@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>About Us</title>
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+		<meta charset="UTF-8">
+  		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+		<link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+
+		<script>let serverVisitorId = '{{ visitor_id }}';</script>
+
+	</head>
+	<body>
+		<div id="header-a"></div>
+
+		<div class="aboutus">
+			<h1 class="intro">Designed for long-lasting and reliable operation, Bluepumps can be encountered in over a dozen Sub-Saharan African countries such as Mali, Kenya, Burkina Faso, Tanzania, and Gambia.</h1>
+			<div class="separator"></div>
+			<div class="section" id="paul">
+				<div class="text">
+					<h2>Who was Paul Van Beers?</h2>
+					<p>Paul Van Beers was the Founder of the Bluepump and Co-Founder of the Fairwater Foundation.</p>
+
+					<p>In 2003, Paul had an idea to develop a handpump with low-cost maintenance. With this idea, Paul hoped to provide African communities with a durable water pumping system that African communities could sustain locally.</p>
+
+					<p>As Project Manager of the Rural Water Development (RWD) project in Kenya, Paul had the opportunity to suggest improvements, given his long-term practical experience in both Burkina Faso and Mozambique, towards the Volanta Pump, considered the most reliable handpump at the time.</p>
+
+					<p>Based on this experience, Paul decided to develop and trial a new, simple, and reliable handpump, utilizing the same advantages of the Volanta Pump but avoiding many of the Pumps disadvantages.</p>
+
+					<p>In 2008, Paul Van Beers Co-Founded the Fairwater Foundation with Syrayya Gok, aimed at beginning rehabilitation projects in Africa and coordinating Research and Development (R&D) towards developing his new handpump.</p>
+
+					<p>In 2020, Paul Van Beers tragically passed away, at the age of 70, due to cancer-related illnesses. Since 2020, Geraldo Vallen, Founder of Jointhepipe, has acquired the Fairwater Foundation and has continued to distribute Bluepumps in Sub-Saharan Africa.</p>
+				</div>
+				<img src="{{ url_for('static', filename='images/paul.jpg') }}" alt="Paul" class="paul-image">
+			</div>
+			<div class="section" id="origin">
+				<img src="{{ url_for('static', filename='images/picf.jpg') }}" alt="Bluepump">
+				<div class="text">
+					<h2>The Origin Of The Bluepump</h2>
+					<p>Initially, the pilot handpump model was named ‘Afripump,’ but confusion with the Village Level Operation Maintenance (VLOM) ‘Afridev’ handpump led users to address Paul Van Beers’ handpump as ‘Bluepump’ due to the handpump’s color. With this intervention, Paul renamed the handpump to Fairwater ‘Bluepump.’</p>
+
+					<p>Following field testing in Mozambique in 2008 and Northern Kenya in 2010 by Oxfam, the Bluepump design proved very reliable in the harsh local environment. In 2010, the first Fairwater Bluepump model was finalized.</p>
+
+					<p>Throughout the 2010s, Paul Van Beers modified the Bluepump design frequently because of his vision and passion for innovation.</p>
+
+					<p>For several years, BOODE B.V., in the Netherlands, has been responsible for producing and distributing Blueumps globally.</p>
+				</div>
+			</div>
+			<div class="section" id="geraldo">
+				<div class="text">
+					<h2>Who is Geraldo Vallen?</h2>
+					<p>Geraldo Vallen has been the Founder of Jointhepipe since 2008. Jointhepipe is an Amsterdam-based Dutch company that sells sustainable water bottles made from CO2-negative sugarcane to promote drinking tap water. Jointhepipe’s vision aims to build a community of tap water drinkers worldwide as they export their water bottles worldwide, mainly within the hospitality industry. </p>
+
+					<p>Before founding Jointhepipe, Geraldo had a resounding success at CZAR, which earned him the Palme d’Or award, among other awards for worldwide production. After CZAR, Geraldo focused on the planet’s well-being and long-term sustainability.</p>
+				</div>
+				<img src="{{ url_for('static', filename='images/geraldo.jpg') }}" alt="Geraldo">
+			</div>
+		</div>
+		<div class="separator"></div>
+		<div id="footer-a"></div>
+		<script src="{{ url_for('static', filename='js/script_a.js') }}"></script>
+		<div id="load-privacy-banner-a"></div>
+	</body>
+</html>

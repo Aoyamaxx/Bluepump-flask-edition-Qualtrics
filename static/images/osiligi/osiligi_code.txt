@@ -1,0 +1,10 @@
+<<<<<<< HEAD
+@app.route('/gallery_osiligi')
+def gallery_osiligi():
+    country_images = [{'filename': 'osiligi/osiligi1.jpg'}, {'filename': 'osiligi/osiligi2.jpg'}, {'filename': 'osiligi/osiligi3.jpg'}, {'filename': 'osiligi/osiligi4.jpg'}, {'filename': 'osiligi/osiligi5.jpg'}, {'filename': 'osiligi/osiligi6.jpg'}, {'filename': 'osiligi/osiligi7.jpg'}, {'filename': 'osiligi/osiligi8.jpg'}, {'filename': 'osiligi/osiligi9.jpg'}]
+=======
+@app.route('/gallery_osiligi')
+def gallery_osiligi():
+    country_images = [{'filename': 'osiligi/osiligi1.jpg'}, {'filename': 'osiligi/osiligi2.jpg'}, {'filename': 'osiligi/osiligi3.jpg'}, {'filename': 'osiligi/osiligi4.jpg'}, {'filename': 'osiligi/osiligi5.jpg'}, {'filename': 'osiligi/osiligi6.jpg'}, {'filename': 'osiligi/osiligi7.jpg'}, {'filename': 'osiligi/osiligi8.jpg'}, {'filename': 'osiligi/osiligi9.jpg'}]
+>>>>>>> 43eee40ee29a2fb82f585df0c0be911dfb0461f3
+    return render_template('gallery_osiligi.html', country_images=country_images)

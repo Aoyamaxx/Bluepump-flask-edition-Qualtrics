@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Donate</title>
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+		<meta charset="UTF-8">
+  		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+		<link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+
+		<script>let serverVisitorId = '{{ visitor_id }}';</script>
+
+	</head>
+	<body>
+		<div id="header-b"></div>
+
+		<div class="separator"></div>
+		<div id="footer-b"></div>
+		<script src="{{ url_for('static', filename='js/script_b.js') }}"></script>
+		<div id="load-privacy-banner-b"></div>
+	</body>
+</html>

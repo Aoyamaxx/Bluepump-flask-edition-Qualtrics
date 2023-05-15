@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Jointhepipe Foundation</title>
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+		<meta charset="UTF-8">
+  		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="icon" type="image/x-icon" href="images/favicon.ico">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+		<link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+
+    	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+
+    	<script>let serverVisitorId = '{{ visitor_id }}';</script>
+
+
+        <link rel="alternate" hreflang="en" href="https://www.jointhepipe-foundation.com">
+        <link rel="alternate" hreflang="nl" href="https://nl.jointhepipe-foundation.com">
+
+
+        <script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
+        <script>
+            Weglot.initialize({
+                api_key: 'wg_480640ec939bfcac796a5645ffb7ed574'
+            });
+        </script>
+
+	</head>
+	<body>
+		<div id="header-a"></div>
+
+		<div id="content">
+			<div class="container-landing">
+			  <div class="title-landing">
+			    <p>Version A (no Donate popup)<p>
+				<h1>This is <span class="bluepump-title">BluePump.</span></h1>
+				<p>Designed for long-lasting and reliable operation</p>
+				<div class="donate-landing-wrapper">
+					<a id="donate-index-a" href="{{ url_for('donate_a') }}" class="donate-landing">Donate Now</a>
+				</div>
+			  </div>
+			  <video class="video-background" loop muted>
+				<source src="{{ url_for('static', filename='images/pumpvideo.mp4') }}" type="video/mp4">
+				Your browser does not support the video tag.
+			  </video>
+			  <img class="image-background" src="{{ url_for('static', filename='images/picb.jpg') }}" alt="Background image">
+			</div>
+		</div>
+
+
+		<div class="partners-section">
+			<h2 class="partners-title">Our Partners</h2>
+			<div class="partners-list">
+			  <img src="{{ url_for('static', filename='images/jtp.png') }}" alt="Partner 1" class="partner-logo">
+			  <img src="{{ url_for('static', filename='images/citywater.png') }}" alt="Partner 2" class="partner-logo">
+			  <img src="{{ url_for('static', filename='images/techno.png') }}" alt="Partner 3" class="partner-logo">
+			</div>
+		</div>
+
+		<div class="separator"></div>
+
+
+		<section id="blupump-gallery">
+			<div class="container">
+				<h2 class="text-center mb-5" style="font-weight: bold; font-size: 36px;">Blupump Gallery</h2>
+				<div class="gallery-description">
+                    <p>Welcome to the Bluepump Gallery, a captivating collection of images showcasing our life-changing Bluepump installations across various African countries. <a href="{{ url_for('gallery_a') }}">Click here to see more BluePump photos from different countries.</a></p>
+                </div>
+				<div class="row">
+					<div class="col-lg-4 col-md-6 mb-4">
+						<div class="card h-100">
+							<img src="{{ url_for('static', filename='images/mali_flag.jpg') }}" class="card-img" alt="Blupump Image 1">
+							<div class="card-body">
+								<h5 class="card-title">Mali</h5>
+								<p class="card-text">Mali Blupump Gallery description.</p>
+							</div>
+							<div class="card-footer text-center">
+								<a href="{{ url_for('gallery_mali_a') }}" class="btn btn-primary">View</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-4 col-md-6 mb-4">
+						<div class="card h-100">
+							<img src="{{ url_for('static', filename='images/kenya_flag.webp') }}" class="card-img" alt="Blupump Image 2">
+							<div class="card-body">
+								<h5 class="card-title">Kenya</h5>
+								<p class="card-text">Kenya Blupump Gallery description.</p>
+							</div>
+							<div class="card-footer text-center">
+								<a href="{{ url_for('gallery_kenya_a') }}" class="btn btn-primary">View</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-4 col-md-6 mb-4">
+						<div class="card h-100">
+							<img src="{{ url_for('static', filename='images/burkina_flag.png') }}" class="card-img" alt="Blupump Image 3">
+							<div class="card-body">
+								<h5 class="card-title">Burkina Faso</h5>
+								<p class="card-text">Burkina Faso Blupump Gallery description.</p>
+							</div>
+							<div class="card-footer text-center">
+								<a href="{{ url_for('gallery_burkina_a') }}" class="btn btn-primary">View</a>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</section>
+
+
+		<div class="separator"></div>
+
+		<div class="container-project">
+			<div class="left-project">
+				<img src="{{ url_for('static', filename='images/picd.jpg') }}" alt="Bluepump 3" class="left-project-pic">
+			</div>
+			<div class="right-project">
+				<div class="title-project">
+					<h1>Our Projects</h1>
+					<p>Since the start of the BluePump project, with the help of our partners, we now provide over 1.000 communities with sustainable access to safe water; that means more than 500.000 people have every day clean water nearby, for the lowest price in Africa.</p>
+					<a href="{{ url_for('projects_a') }}" class="learn-more-btn-project-missions">Learn more</a>
+				</div>
+			</div>
+		</div>
+		<div class="container-mission">
+			<div class="left-mission">
+				<div class="title-mission">
+					<h1>Paul Van Beers</h1>
+					<p>Paul Van Beers was the Founder of the Bluepump and Co-Founder of the Fairwater Foundation.</p>
+					<a href="{{ url_for('about_a') }}" class="learn-more-btn-project-missions">Learn more</a>
+				</div>
+			</div>
+			<div class="right-mission">
+				<img src="{{ url_for('static', filename='images/paul2.jpg') }}" alt="Bluepump 3" class="right-mission-pic">
+			</div>
+		</div>
+		<div class="separator-home"></div>
+		<div id="footer-a"></div>
+		<script src="{{ url_for('static', filename='js/script_a.js') }}"></script>
+		<script>
+			function setCardImageHeight() {
+			  const cardImages = document.querySelectorAll('#blupump-gallery .card-img');
+			  const targetHeight = 300; // Set the desired height in pixels
+
+			  cardImages.forEach(img => {
+				img.style.height = targetHeight + 'px';
+				img.style.objectFit = 'cover';
+				img.style.objectPosition = 'center';
+			  });
+			}
+
+			window.addEventListener('DOMContentLoaded', setCardImageHeight);
+			window.addEventListener('resize', setCardImageHeight);
+
+			function setupVideoAutoplay() {
+              const videoElement = document.querySelector('.video-background');
+              const screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
+              if (screenWidth > 767.98) {
+                  videoElement.setAttribute('autoplay', '');
+              } else {
+                  videoElement.removeAttribute('autoplay');
+              }
+          }
+
+          window.addEventListener('DOMContentLoaded', setupVideoAutoplay);
+          window.addEventListener('resize', setupVideoAutoplay);
+		</script>
+		<div id="load-privacy-banner-a"></div>
+	</body>
+</html>

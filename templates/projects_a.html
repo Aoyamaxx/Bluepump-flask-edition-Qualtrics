@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Our Projets</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+		<meta charset="UTF-8">
+  		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+		<link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+
+		<script>let serverVisitorId = '{{ visitor_id }}';</script>
+
+	</head>
+	<body>
+		<div id="header-a"></div>
+		<div class="projects">
+			<div class="project-header-container">
+            	<div class="project-header">
+                <h1>Projects across Sub-Saharan Africa</h1>
+                <p>The Fairwater foundation in provides clean drinking water to millions of people in 15 countries across Sub-Saharan Africa. Scroll down to see the full list of projects.</p>
+            	</div>
+			</div>
+            <div class="project-row">
+
+                <div class="project-column">
+					<div class="project-column-inner">
+                    	<div class="project-card">
+                        <a href="{{ url_for('osiligi_a') }}">
+                        <div id='project-img1' style="background-image: url({{ url_for('static', filename='images/osiligi/osiligi_cover.png') }});"></div>
+                        <h2>Osiligi Foundation</h2>
+                        <p>Learn how the UK-based Foundation installed 20 Bluepumps in Siaya County, Kenya in 2019</p>
+                        </a>
+                    	</div>
+					</div>
+                </div>
+
+                <div class="project-column">
+					<div class="project-column-inner">
+                    	<div class="project-card">
+                        <a href="{{ url_for('osiligi_a') }}">
+                        <div id='project-img1' style="background-image: url({{ url_for('static', filename='images/osiligi/osiligi_cover.png') }});"></div>
+                        <h2>Osiligi Foundation</h2>
+                        <p>Learn how the UK-based Foundation installed 20 Bluepumps in Siaya County, Kenya in 2019</p>
+                        </a>
+                    	</div>
+					</div>
+                </div>
+
+            </div>
+        </div>
+		<div class="separator"></div>
+		<div id="footer-a"></div>
+		<script src="{{ url_for('static', filename='js/script_a.js') }}"></script>
+		<div id="load-privacy-banner-a"></div>
+	</body>
+</html>

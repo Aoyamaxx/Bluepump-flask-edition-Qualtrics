@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>BluePump Gallery</title>
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+		<meta charset="UTF-8">
+  		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="icon" type="image/x-icon" href="images/favicon.ico">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+		<link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+
+    	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+
+		<script>let serverVisitorId = '{{ visitor_id }}';</script>
+
+	</head>
+	<body>
+		<div id="header-a"></div>
+
+        <section id="blupump-gallery">
+			<div class="container">
+				<h2 class="text-center mb-5" style="font-weight: bold; font-size: 36px;">Blupump Gallery</h2>
+				<div class="gallery-description">
+                    <p>Welcome to the Bluepump Gallery, a captivating collection of images showcasing our life-changing Bluepump installations across various African countries. As you explore the gallery, you'll discover the transformative impact of Bluepumps on local communities, providing them with reliable and clean water sources.</p>
+                </div>
+				<div class="row">
+					<div class="col-lg-4 col-md-6 mb-4">
+						<div class="card h-100">
+							<img src="{{ url_for('static', filename='images/mali_flag.jpg') }}" class="card-img" alt="Blupump Image 1">
+							<div class="card-body">
+								<h5 class="card-title">Mali</h5>
+								<p class="card-text">Mali Blupump Gallery description.</p>
+							</div>
+							<div class="card-footer text-center">
+								<a href="{{ url_for('gallery_mali_a') }}" class="btn btn-primary">View</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-4 col-md-6 mb-4">
+						<div class="card h-100">
+							<img src="{{ url_for('static', filename='images/kenya_flag.webp') }}" class="card-img" alt="Blupump Image 2">
+							<div class="card-body">
+								<h5 class="card-title">Kenya</h5>
+								<p class="card-text">Kenya Blupump Gallery description.</p>
+							</div>
+							<div class="card-footer text-center">
+								<a href="{{ url_for('gallery_kenya_a') }}" class="btn btn-primary">View</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-4 col-md-6 mb-4">
+						<div class="card h-100">
+							<img src="{{ url_for('static', filename='images/burkina_flag.png') }}" class="card-img" alt="Blupump Image 3">
+							<div class="card-body">
+								<h5 class="card-title">Burkina Faso</h5>
+								<p class="card-text">Burkina Faso Blupump Gallery description.</p>
+							</div>
+							<div class="card-footer text-center">
+								<a href="{{ url_for('gallery_burkina_a') }}" class="btn btn-primary">View</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-4 col-md-6 mb-4">
+						<div class="card h-100">
+							<img src="{{ url_for('static', filename='images/gambia_flag.webp') }}" class="card-img" alt="Blupump Image 4">
+							<div class="card-body">
+								<h5 class="card-title">Gambia</h5>
+								<p class="card-text">Gambia Blupump Gallery description.</p>
+							</div>
+							<div class="card-footer text-center">
+								<a href="{{ url_for('gallery_gambia_a') }}" class="btn btn-primary">View</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-4 col-md-6 mb-4">
+						<div class="card h-100">
+							<img src="{{ url_for('static', filename='images/malawi_flag.webp') }}" class="card-img" alt="Blupump Image 5">
+							<div class="card-body">
+								<h5 class="card-title">Malawi</h5>
+								<p class="card-text">Malawi Blupump Gallery description.</p>
+							</div>
+							<div class="card-footer text-center">
+								<a href="{{ url_for('gallery_malawi_a') }}" class="btn btn-primary">View</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-4 col-md-6 mb-4">
+						<div class="card h-100">
+							<img src="{{ url_for('static', filename='images/sierra_leone_flag.webp') }}" class="card-img" alt="Blupump Image 6">
+							<div class="card-body">
+								<h5 class="card-title">Sierra Leone</h5>
+								<p class="card-text">Sierra Leone Blupump Gallery description.</p>
+							</div>
+							<div class="card-footer text-center">
+								<a href="{{ url_for('gallery_sierra_leone_a') }}" class="btn btn-primary">View</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-4 col-md-6 mb-4">
+						<div class="card h-100">
+							<img src="{{ url_for('static', filename='images/sudan_flag.webp') }}" class="card-img" alt="Blupump Image 7">
+							<div class="card-body">
+								<h5 class="card-title">Sudan</h5>
+								<p class="card-text">Sudan Blupump Gallery description.</p>
+							</div>
+							<div class="card-footer text-center">
+								<a href="{{ url_for('gallery_sudan_a') }}" class="btn btn-primary">View</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-4 col-md-6 mb-4">
+						<div class="card h-100">
+							<img src="{{ url_for('static', filename='images/tanzania_flag.webp') }}" class="card-img" alt="Blupump Image 8">
+							<div class="card-body">
+								<h5 class="card-title">Tanzania</h5>
+								<p class="card-text">Tanzania Blupump Gallery description.</p>
+							</div>
+							<div class="card-footer text-center">
+								<a href="{{ url_for('gallery_tanzania_a') }}" class="btn btn-primary">View</a>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</section>
+
+		<div class="separator"></div>
+		<div id="footer-a"></div>
+		<script src="{{ url_for('static', filename='js/script_a.js') }}"></script>
+        <script>
+			function setCardImageHeight() {
+			  const cardImages = document.querySelectorAll('#blupump-gallery .card-img');
+			  const targetHeight = 300; // Set the desired height in pixels
+
+			  cardImages.forEach(img => {
+				img.style.height = targetHeight + 'px';
+				img.style.objectFit = 'cover';
+				img.style.objectPosition = 'center';
+			  });
+			}
+
+			window.addEventListener('DOMContentLoaded', setCardImageHeight);
+			window.addEventListener('resize', setCardImageHeight);
+
+			function setupVideoAutoplay() {
+              const videoElement = document.querySelector('.video-background');
+              const screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
+              if (screenWidth > 767.98) {
+                  videoElement.setAttribute('autoplay', '');
+              } else {
+                  videoElement.removeAttribute('autoplay');
+              }
+          }
+
+          window.addEventListener('DOMContentLoaded', setupVideoAutoplay);
+          window.addEventListener('resize', setupVideoAutoplay);
+		</script>
+		<div id="load-privacy-banner-a"></div>
+	</body>
+</html>

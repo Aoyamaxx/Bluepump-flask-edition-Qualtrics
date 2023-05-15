@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>BluePump Map</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+        <link href="https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.css" rel="stylesheet">
+        <script src="https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+
+        <link href='https://fonts.googleapis.com/css?family=Barlow' rel='stylesheet'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <script>let serverVisitorId = '{{ visitor_id }}';</script>
+
+        <style>
+            body {
+				margin: 0;
+				padding: 0;
+				display: grid;
+				grid-template-rows: auto 1fr; /* Set the body grid layout to have two rows, one for the header and one for the content */
+				min-height: 100vh;
+			}
+
+            #header-a {
+				position: relative;
+				height: auto; /* Change height to auto */
+				background-color: #ffffff;
+				width: 100%;
+			}
+
+			#footer-a {
+			    position: relative;
+                height: 0px;
+                background-color: #ffffff;
+                width: 100%;
+                bottom: 0;
+                left: 0;
+              }
+
+			#content {
+				flex: 1; /* This will make the content div take up the remaining vertical space */
+			}
+
+            #map {
+	            height: 100%;
+                width: 100%;
+            }
+
+            .mapboxgl-popup {
+                max-width: 400px;
+                font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+            }
+
+            .map-container {
+				grid-row: 2; /* Set the map container to be in the second row of the grid */
+				height: 100%;
+				width: 100%;
+			}
+
+			/* Define the styles for the icons */
+    		.icon {
+    			display: inline-block;
+    			width: 20px;
+    			height: 20px;
+    			margin-right: 5px;
+    			vertical-align: middle;
+    			background-repeat: no-repeat;
+    			background-size: contain;
+    		}
+
+    		.legend {
+    			margin-top: 10px;
+    			padding: 10px;
+    			font-size: 14px;
+    			color: #555;
+    			border: 1px solid #ddd;
+    			display: flex;
+    			flex-direction: column;
+    			align-items: flex-start;
+    			position: absolute;
+    		}
+
+    		/* Define the styles for the legend text */
+    		.legend-text {
+    			display: flex;
+    			align-items: center;
+    			margin-bottom: 5px;
+    		}
+        </style>
+
+    </head>
+    <body>
+        <div id="header-a"></div>
+        <style>
+            .mapboxgl-popup {
+                max-width: 400px;
+                font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+            }
+        </style>
+		<div id="content">
+        	<div class="map-container">
+            	<div id="map"></div>
+        	</div>
+		</div>
+        <div class="legend-box">
+                <!-- Create the legend box -->
+                <div class="legend">
+
+                    <!-- Create the heading for the legend -->
+                    <div class="legend-text">
+                        <h3>Pump status:</h3>
+                    </div>
+
+                    <!-- Create the icon and text for each legend item -->
+                    <div class="legend-text">
+                        <span class="icon" style="background-image: url({{ url_for('static', filename='jointhepic/Legend10.svg') }})"></span>
+                        <span class="legend-label">Maintained</span>
+                    </div>
+
+                    <div class="legend-text">
+                        <span class="icon" style="background-image: url({{ url_for('static', filename='jointhepic/Legend9.svg') }})></span>
+                        <span class="legend-label">Maintenance needed</span>
+                    </div>
+
+                    <div class="legend-text">
+                        <span class="icon" style="background-image: url({{ url_for('static', filename='jointhepic/Legend8.svg') }})"></span>
+                        <span class="legend-label">Urgent maintenance needed</span>
+                    </div>
+                    <div class="legend-text">
+                        <span class="icon" style="background-image: url({{ url_for('static', filename='jointhepic/Legend7.svg') }})"></span>
+                        <span class="legend-label">Ghost pump</span>
+                    </div>
+                </div>
+            </div>
+            <script>
+                mapboxgl.accessToken = 'pk.eyJ1Ijoic2ViYXN0aWFuZ3JhZWZmIiwiYSI6ImNsMGR0NGw3cTAzMDAzZGxwZGl5bnR5Z2UifQ.U-eNkITMkqBtWTB532MbBA';
+                const map = new mapboxgl.Map({
+                    container: 'map',
+                    // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+                    style: 'mapbox://styles/sebastiangraeff/clex9r70g000401n0mrl5epdp',
+                    center: [24.6846, -11.8927],
+                    zoom: 3.8
+                });
+                // IMPORTANT! Change path directory and location of csv file
+                const csvUrl = 'https://raw.githubusercontent.com/Aoyamaxx/Bluepump-flask-edition/main/static/map_data/WebsiteMapLocations.csv';
+                fetch(csvUrl)
+                    .then(response => response.text())
+                    .then(data => {
+                        // Parse the CSV data
+                        const rows = data.trim().split('\n').slice(1);
+                        const features = rows.map(row => {
+                            const [id, type, name, link, description, icon, longitude, latitude] = row.split(';');
+                            return {
+                                type: 'Feature',
+                                geometry: {
+                                    type: 'Point',
+                                    coordinates: [parseFloat(longitude), parseFloat(latitude)]
+                                },
+                                properties: {
+                                    type: type,
+                                    description: description,
+                                    icon: icon
+                                }
+                            };
+                        });
+                        const geojson = {
+                            type: 'FeatureCollection',
+                            features: features
+                        };
+
+                        // Add the GeoJSON data as a source to the map
+                        map.on('load', () => {
+                            map.addSource('markers', {
+                                type: 'geojson',
+                                data: geojson
+                            });
+
+                            // Add a layer using the GeoJSON data source
+                            map.addLayer({
+                                'id': 'markers',
+                                'type': 'symbol',
+                                'source': 'markers',
+                                'layout': {
+                                    'icon-image': ['get', 'icon'],
+                                    'icon-allow-overlap': true,
+                                    'icon-size':  [
+                                        'interpolate',
+                                        // Set the exponential rate of change to 1.5
+                                        ['exponential', 1.5],
+                                        ['zoom'],
+                                        // When zoom is 10, icon will be 50% size.
+                                        10,
+                                        0.5,
+                                        // When zoom is 22, icon will be 10% size.
+                                        22,
+                                        0.1
+                                    ],
+                                }
+                            });
+                        });
+                        // When a click event occurs on a feature in the places layer, open a popup at the
+                        // location of the feature, with description HTML from its properties.
+                        map.on('click', 'markers', (e) => {
+                            // Copy coordinates array.
+                            const coordinates = e.features[0].geometry.coordinates.slice();
+                            const description = e.features[0].properties.description;
+
+                            // Ensure that if the map is zoomed out such that multiple
+                            // copies of the feature are visible, the popup appears
+                            // over the copy being pointed to.
+                            while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                                coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+                            }
+
+                            new mapboxgl.Popup()
+                                .setLngLat(coordinates)
+                                .setHTML(description)
+                                .addTo(map);
+                        });
+
+                        // Change the cursor to a pointer when the mouse is over the places layer.
+                        map.on('mouseenter', 'places', () => {
+                            map.getCanvas().style.cursor = 'pointer';
+                        });
+
+                        // Change it back to a pointer when it leaves.
+                        map.on('mouseleave', 'places', () => {
+                            map.getCanvas().style.cursor = '';
+                        });
+                    });
+            </script>
+        <div id="footer-a"></div>
+        <script src="{{ url_for('static', filename='js/script_a.js') }}"></script>
+		<div id="load-privacy-banner-a"></div>
+    </body>
+</html>

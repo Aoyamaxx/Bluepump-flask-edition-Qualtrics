@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Osiligi Foundation</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+		<meta charset="UTF-8">
+  		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+		<link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+
+        <script>let serverVisitorId = '{{ visitor_id }}';</script>
+
+    </head>
+    <body class="web_background">
+        <div id="header-b"></div>
+
+        <div id="load-donate-popup-b" style="display: none;"></div>
+
+        <div class="project-page">
+            <div class="project-page-header-container">
+            	<div class="project-page-header">
+
+                <h1>Osiligi Foundation</h1>
+
+                <p>Near the Ugandan and Tanzanian border, in the Siaya region of Kenya, the Osiligi Foundation installed 20 Bluepumps. The Osiligi Foundation is a UK-based charitable organization that aims to reduce poverty within Kenya. ‘Osiligi,’ in the Maasai language, means ‘Hope,’ capturing the organization’s objective to support individuals in need. The Osiligi Foundation consists of volunteers who help rehabilitate and install Bluepumps in regions across Kenya. In order to accomplish this, the Osiligi Foundation has built strong relationships with local authorities, communities in villages, and with Join the Pipe’s Keyan Bluepump dealer. The Foundation has established Memorandums of Understanding (MOUs) to ensure that each individual is aware of their responsibilities.</p>
+
+                <p>The Osiligi Foundation began handpump installation in 2015, while the Bluepumps in Siaya were installed within a two-month period in 2019. These Bluepumps were financed by Join the Pipe and the Osiligi Foundation. During the same year, Join the Pipe’s Kenyan Bluepump dealer assisted with the Bluepump installation with local technicians and provided a ‘Training Phase’ to rural communities to teach individuals within these communities how to maintain the Bluepump. If a Bluepump requires maintenance, the communities can contact the Kenyan dealer and arrange for a technician to repair the Bluepump.</p>
+
+            	</div>
+			</div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                {% for image in country_images %}
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card h-100">
+                            <a href="{{ url_for('static', filename='images/' + image.filename) }}" data-lightbox="gallery" data-title="Osiligi Foundation Gallery">
+                                <div class="card-img-container">
+                                    <img src="{{ url_for('static', filename='images/' + image.filename) }}" class="card-img-top" alt="Osiligi Foundation Image">
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+		<div class="separator"></div>
+
+        <div id="footer-b"></div>
+		<script src="{{ url_for('static', filename='js/script_b.js') }}"></script>
+		<div id="load-privacy-banner"></div>
+    </body>
+</html>
