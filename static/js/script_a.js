@@ -81,6 +81,7 @@
   $(document).ready(function () {
     $("#header-a").load("/header_a");
     $("#footer-a").load("/footer_a");
+    $("#buttonDiv").load("/survey_button");
 
     if (typeof serverVisitorId !== 'undefined' && serverVisitorId !== '') {
       initializeEvents(serverVisitorId);

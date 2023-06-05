@@ -32,15 +32,15 @@
   }
 
   function trackDonateClick(visitorId, buttonType) {
-  $.ajax({
-    url: '/track_donate_click_b',
-    method: 'POST',
-    data: {
-      visitor_id: visitorId,
-      button_type: buttonType
-    }
-  });
-}
+    $.ajax({
+      url: '/track_donate_click_b',
+      method: 'POST',
+      data: {
+        visitor_id: visitorId,
+        button_type: buttonType
+      }
+    });
+  }
 
   function initializeEvents(visitorId) {
     let startTimeGlobal = new Date();
@@ -138,6 +138,7 @@
   $(document).ready(function () {
     $("#header-b").load("/header_b");
     $("#footer-b").load("/footer_b");
+    $("#buttonDiv").load("/survey_button");
 
     if (typeof serverVisitorId !== 'undefined' && serverVisitorId !== '') {
       initializeEvents(serverVisitorId);

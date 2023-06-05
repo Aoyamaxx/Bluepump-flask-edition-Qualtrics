@@ -1,0 +1,4 @@
+@app.route('/gallery_mambo')
+def gallery_mambo():
+    country_images = [{'filename': 'mambo/mambo1.jpg'}, {'filename': 'mambo/mambo2.jpg'}]
+    return render_template('gallery_mambo.html', country_images=country_images)

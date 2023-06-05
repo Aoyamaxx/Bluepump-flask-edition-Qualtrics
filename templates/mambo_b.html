@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Gallery Kenya</title>
+        <title>Mambo View Point</title>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
         <meta charset="UTF-8">
@@ -40,24 +40,37 @@
         <script>let serverVisitorId = '{{ visitor_id }}';</script>
 
     </head>
-    <body>
-        <div id="header-a"></div>
+    <body class="web_background">
+        <div id="header-b"></div>
 
         <div id="buttonDiv"></div>
 
+        <div id="load-donate-popup-b" style="display: none;"></div>
+
+        <div class="project-page">
+            <div class="project-page-header-container">
+            	<div class="project-page-header">
+
+                <h1>Mambo View Point</h1>
+
+                <p>Within the West Usambaras Lushoto Mountain Reserve in North-Eastern Tanzania, MamboViewPoint is located. Located in Mambo, around 180 Kilometers from Mount Kilimanjaro, MamboViewPoint is an Ecological Lodge that aims to provide and improve the prosperity of the local community. To support their community, MamboViewPoint grows avocado trees to generate an income to maintain the handpumps locally.</p>
+
+                <p>In the past, Members of Parliament donated India Mark II handpumps in the area, which would break down shortly after being installed. </p>
+
+                <p>In 2009, Paul van Beers, the developer of the Bluepump, introduced the Bluepump in Mambo. In this region, groundwater is 2 to 10 meters deep, simplifying Borehole Drilling. Between 2009 and 2019, MamboViewPoint installed 11 Bluepumps, and in 2023, Bluepump rehabilitation guaranteed that each Bluepump was operational. The following year, MamboViewPoint would like to continue rehabilitating handpumps, such as the India Mark II, with Bluepumps.</p>
+
+            	</div>
+			</div>
+        </div>
+
         <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <h1 class="text-center my-4" style="padding: 3vh;">Kenya BluePump Gallery</h1>
-                </div>
-            </div>
             <div class="row">
                 {% for image in country_images %}
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="card h-100">
-                            <a href="{{ url_for('static', filename='images/' + image.filename) }}" data-lightbox="gallery" data-title="Kenya BluePump Gallery">
+                            <a href="{{ url_for('static', filename='images/' + image.filename) }}" data-lightbox="gallery" data-title="Mambo View Point Gallery">
                                 <div class="card-img-container">
-                                    <img src="{{ url_for('static', filename='images/' + image.filename) }}" class="card-img-top" alt="Kenya BluePump Image">
+                                    <img src="{{ url_for('static', filename='images/' + image.filename) }}" class="card-img-top" alt="Mambo View Point Image">
                                 </div>
                             </a>
                         </div>
@@ -66,10 +79,10 @@
             </div>
         </div>
 
-        <div class="separator"></div>
+		<div class="separator"></div>
 
-        <div id="footer-a"></div>
-        <script src="{{ url_for('static', filename='js/script_a.js') }}"></script>
-		<div id="load-privacy-banner-a"></div>
+        <div id="footer-b"></div>
+        <script src="{{ url_for('static', filename='js/script_b.js') }}"></script>
+		<div id="load-privacy-banner-b"></div>
     </body>
 </html>

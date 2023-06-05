@@ -11,7 +11,7 @@ import urllib.parse
 app = Flask(__name__)
 
 # Configure database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///user_tracking.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///user_tracking_Qualtrics.db'
 
 # Configure flask session
 app.config["SESSION_PERMANENT"] = False
@@ -29,6 +29,7 @@ db = SQLAlchemy(app)
 class SiteVisitA(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     visitor_id = db.Column(db.String(36))
+    uid_parameter = db.Column(db.String(36))
     ip_address = db.Column(db.String(50))
     user_agent = db.Column(db.String(255))
     entry_time = db.Column(db.DateTime)
@@ -59,6 +60,7 @@ class DonateClickA(db.Model):
 class SiteVisitB(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     visitor_id = db.Column(db.String(36))
+    uid_parameter = db.Column(db.String(36))
     ip_address = db.Column(db.String(50))
     user_agent = db.Column(db.String(255))
     entry_time = db.Column(db.DateTime)
@@ -106,6 +108,10 @@ def get_next_version():
 
 @app.route('/')
 def index():
+    uid = request.args.get('uid')
+    if not uid:
+        uid = 'NA'
+
     if app.config['ENABLE_AB_TESTING']:
         version = get_next_version()
     else:
@@ -121,23 +127,31 @@ def index():
         return render_template('index_a.html', visitor_id=visitor_id)
     else:
         log_site_visit_once_b(visitor_id)
-        return render_template('index_b.html', visitor_id=visitor_id)
+        return render_template('index_b.html', visitor_id=visitor_id, uid=uid)
 
 @app.route('/index_a')
 def index_a():
+    uid = request.args.get('uid')
+    if not uid:
+        uid = 'NA'
+
     if 'visitor_id' not in session:
         session["visitor_id"] = generate_visitor_id_a()
     visitor_id = session["visitor_id"]
     log_site_visit_once_a(visitor_id)
-    return render_template('index_a.html', visitor_id=visitor_id)
+    return render_template('index_a.html', visitor_id=visitor_id, uid=uid)
 
 @app.route('/index_b')
 def index_b():
+    uid = request.args.get('uid')
+    if not uid:
+        uid = 'NA'
+
     if 'visitor_id' not in session:
         session["visitor_id"] = generate_visitor_id_b()
     visitor_id = session["visitor_id"]
     log_site_visit_once_b(visitor_id)
-    return render_template('index_b.html', visitor_id=visitor_id)
+    return render_template('index_b.html', visitor_id=visitor_id, uid=uid)
 
 @app.before_request
 def reset_site_visit_logged():
@@ -146,6 +160,10 @@ def reset_site_visit_logged():
     if 'site_visit_logged_b' in session:
         del session['site_visit_logged_b']
 
+@app.route('/survey_button')
+def survey_button():
+    return render_template('survey_button.html')
+
 
 # Version A
 # Function to log data: this function saves the time spent on the previous page in the database. Unit of time is seconds.
@@ -153,8 +171,13 @@ def generate_visitor_id_a():
     return str(uuid.uuid4())[:10]
 
 def log_site_visit_a(visitor_id):
+    uid = request.args.get('uid')
+    if not uid:
+        uid = 'NA'
+
     site_visit = SiteVisitA(
         visitor_id=visitor_id,
+        uid_parameter=uid,
         entry_time=datetime.now(),
         ip_address=get_user_ip(),
         user_agent=request.user_agent.string,
@@ -163,9 +186,14 @@ def log_site_visit_a(visitor_id):
     db.session.commit()
 
 def log_site_visit_once_a(visitor_id):
+    uid = request.args.get('uid')
+    if not uid:
+        uid = 'NA'
+
     if 'site_visit_logged_a' not in session or not session['site_visit_logged_a']:
         site_visit = SiteVisitA(
             visitor_id=visitor_id,
+            uid_parameter=uid,
             entry_time=datetime.now(),
             ip_address=get_user_ip(),
             user_agent=request.user_agent.string,
@@ -384,6 +412,14 @@ def osiligi_a():
     log_site_visit_once_a(visitor_id)
     return render_template('osiligi_a.html', country_images=country_images, visitor_id=visitor_id)
 
+@app.route('/mambo_a')
+def mambo_a():
+    country_images = [{'filename': 'mambo/mambo1.jpg'}, {'filename': 'mambo/mambo2.jpg'}]
+    if 'visitor_id' not in session:
+        session["visitor_id"] = generate_visitor_id_a()
+    visitor_id = session["visitor_id"]
+    log_site_visit_once_a(visitor_id)
+    return render_template('mambo_a.html', country_images=country_images, visitor_id=visitor_id)
 
 
 
@@ -396,8 +432,13 @@ def generate_visitor_id_b():
     return str(uuid.uuid4())[:10]
 
 def log_site_visit_b(visitor_id):
+    uid = request.args.get('uid')
+    if not uid:
+        uid = 'NA'
+
     site_visit = SiteVisitB(
         visitor_id=visitor_id,
+        uid_parameter=uid,
         entry_time=datetime.now(),
         ip_address=get_user_ip(),
         user_agent=request.user_agent.string,
@@ -406,16 +447,21 @@ def log_site_visit_b(visitor_id):
     db.session.commit()
 
 def log_site_visit_once_b(visitor_id):
-    if 'site_visit_logged' not in session or not session['site_visit_logged']:
+    uid = request.args.get('uid')
+    if not uid:
+        uid = 'NA'
+
+    if 'site_visit_logged_b' not in session or not session['site_visit_logged_b']:
         site_visit = SiteVisitB(
             visitor_id=visitor_id,
+            uid_parameter=uid,
             entry_time=datetime.now(),
             ip_address=get_user_ip(),
             user_agent=request.user_agent.string,
         )
         db.session.add(site_visit)
         db.session.commit()
-        session['site_visit_logged'] = True
+        session['site_visit_logged_b'] = True
         session.modified = True
     else:
         session.modified = False
@@ -647,6 +693,15 @@ def osiligi_b():
     visitor_id = session["visitor_id"]
     log_site_visit_once_b(visitor_id)
     return render_template('osiligi_b.html', country_images=country_images, visitor_id=visitor_id)
+
+@app.route('/mambo_b')
+def mambo_b():
+    country_images = [{'filename': 'mambo/mambo1.jpg'}, {'filename': 'mambo/mambo2.jpg'}]
+    if 'visitor_id' not in session:
+        session["visitor_id"] = generate_visitor_id_b()
+    visitor_id = session["visitor_id"]
+    log_site_visit_once_b(visitor_id)
+    return render_template('mambo_b.html', country_images=country_images, visitor_id=visitor_id)
 
 if __name__ == '__main__':
     app.run()
